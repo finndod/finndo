@@ -542,6 +542,9 @@ function trackUserLocation() {
 trackUserLocation();
 
 
+// Variable to store the current route
+let currentRoute = null;
+
 // Function to set the route from start to end point
 function setRouteFromStartToEnd(start, end) {
   const url = 'https://api.mapbox.com/directions/v5/mapbox/walking/' + encodeURIComponent(start[0]) + ',' + encodeURIComponent(start[1]) + ';' + encodeURIComponent(end[0]) + ',' + encodeURIComponent(end[1]) + '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
@@ -591,13 +594,8 @@ function setRouteFromStartToEnd(start, end) {
         });
       }
 
-      map.flyTo({
-        center: start,
-        zoom: 16,
-        essential: true // Allow the map to stay at the specified zoom level
-      });
-
-    
+      // Update the current route
+      currentRoute = route;
 
       // Set the trackUser flag to true to enable continuous tracking
       trackUser = true;
@@ -633,17 +631,33 @@ function setRouteFromStartToEnd(start, end) {
       if (route && route.length > 0) {
         updateMarkerAlongRoute(route[0]); // Update the marker position to the start of the route
       }
-            // Set routeAdded to true since a route is added
-            routeAdded = true;
-
-            // Start continuously recentering the map
-          })
-    
+    })
     .catch(error => {
       console.error('Error fetching route:', error);
       document.getElementById('directions').innerHTML = 'Error fetching route. Please try again.';
     });
 }
+
+// Function to continuously update the route as the user follows it
+function updateRoute() {
+  if (currentRoute) {
+    // Remove the first coordinate from the route
+    currentRoute.shift();
+
+    // Update the route source data
+    map.getSource('route').setData({
+      type: 'Feature',
+      geometry: {
+        type: 'LineString',
+        coordinates: currentRoute
+      }
+    });
+  }
+}
+
+// Call the updateRoute function to start updating the route
+setInterval(updateRoute, 500); // Update the route every 0.5 seconds
+
 
 
 
