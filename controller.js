@@ -690,7 +690,7 @@ let recenterInterval; // Variable to store the recentering interval
 
 function recenterMapContinuously() {
   // Define the interval duration (in milliseconds)
-  const intervalDuration = 5000; // Update every 5 seconds (adjust as needed)
+  const intervalDuration = 300; // Update every 5 seconds (adjust as needed)
 
   // Clear any existing recentering interval
   clearInterval(recenterInterval);
