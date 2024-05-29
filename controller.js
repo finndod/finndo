@@ -688,25 +688,29 @@ if (navigator.geolocation) {
 
 let recenterInterval; // Variable to store the recentering interval
 
-function recenterMapContinuously() {
-  // Define the interval duration (in milliseconds)
-  const intervalDuration = 300; // Update every 5 seconds (adjust as needed)
-
-  // Clear any existing recentering interval
-  clearInterval(recenterInterval);
-
-  // Set a new recentering interval
-  recenterInterval = setInterval(() => {
-    // Check if a route is chosen
-    if (chosenDestination !== null) {
+// Function to toggle continuous recentering on and off
+function toggleContinuousRecentering() {
+  console.log('Button clicked');
+  // Check if the interval is currently running
+  if (recenterInterval) {
+    console.log('Stopping continuous recentering');
+    // If running, clear the interval to stop continuous recentering
+    clearInterval(recenterInterval);
+    recenterInterval = null;
+  } else {
+    console.log('Starting continuous recentering');
+    // If not running, start the interval for continuous recentering
+    recenterInterval = setInterval(() => {
+      console.log('Recentering...');
       // Check if geolocation is available
       if ('geolocation' in navigator) {
         // Get the user's current location
         navigator.geolocation.getCurrentPosition(position => {
           const userLocation = [position.coords.longitude, position.coords.latitude];
+          console.log('New user location:', userLocation);
           map.flyTo({
             center: userLocation,
-            zoom: 16, // Adjust the zoom level as needed
+            zoom: 19, // Adjust the zoom level as needed
             essential: true // Allow the map to stay at the specified zoom level
           });
         }, error => {
@@ -715,9 +719,9 @@ function recenterMapContinuously() {
       } else {
         console.error('Geolocation is not supported.');
       }
-    } else {
-      // Clear the recentering interval if no route is chosen
-      clearInterval(recenterInterval);
-    }
-  }, intervalDuration);
+    }, 300); // Update every 5 seconds (adjust as needed)
+  }
 }
+
+// Add event listener to the toggle button
+document.getElementById('toggleButton').addEventListener('click', toggleContinuousRecentering);
