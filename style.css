@@ -1,0 +1,351 @@
+/* --------------------------------------NAV BAR------------------------------------------------------------------- */
+#directions {
+  width: 300px; /* width of the box */
+  height: 300px; /* height of the box */
+  font-size: 18px; /* size of the text */
+  border: 1px solid black; /* border around the box */
+  padding: 10px; /* space between the text and the edges of the box */
+  overflow-y: auto; /* adds a scrollbar if the text exceeds the box height */
+  background-color: #f9f9f9; /* background color of the div */
+}
+
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #c5fff8;
+}
+
+/* Colors::
+
+#5fbdff
+#C5FFF8
+#7B66FF  tekst farge
+#96EFFF
+
+
+
+*/
+.container {
+  max-width: 1050px;
+  width: 90%;
+  margin: auto;
+}
+
+.navbar {
+  width: 100%;
+  background-color: #5fbdff;
+  box-shadow: 0 1px 4px #5fbdff;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 62px;
+}
+
+.navbar .menu-items {
+  display: flex;
+}
+
+.navbar .nav-container li {
+  list-style: none;
+}
+
+.navbar .nav-container .menu-items a {
+  text-decoration: none;
+  color: #7b66ff;
+  font-weight: 500;
+  font-size: 2.7rem;
+  padding: 0.7rem;
+}
+
+.navbar .nav-container .menu-items a:hover {
+  font-weight: bolder;
+}
+
+.nav-container {
+  z-index: 1;
+  display: block;
+  position: relative;
+  height: 60px;
+}
+
+.nav-container .checkbox {
+  position: absolute;
+  display: block;
+  height: 32px;
+  width: 32px;
+  top: 20px;
+  left: 20px;
+  z-index: 5;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.nav-container .hamburger-lines {
+  display: block;
+  height: 26px;
+  width: 32px;
+  position: absolute;
+  top: 17px;
+  left: 20px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-container .hamburger-lines .line {
+  display: block;
+  height: 4px;
+  width: 100%;
+  border-radius: 10px;
+  background: #7b66ff;
+}
+
+.nav-container .hamburger-lines .line1 {
+  transform-origin: 0% 0%;
+  transition: transform 0.4s ease-in-out;
+}
+
+.nav-container .hamburger-lines .line2 {
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav-container .hamburger-lines .line3 {
+  transform-origin: 0% 100%;
+  transition: transform 0.4s ease-in-out;
+}
+
+.navbar .menu-items {
+  padding-top: 120px;
+
+  height: 100vh;
+  width: 100%;
+  transform: translate(-150%);
+  display: flex;
+  flex-direction: column;
+  margin-left: -40px;
+  padding-left: 50px;
+  transition: transform 0.48s ease-in-out;
+  text-align: center;
+}
+
+.navbar .menu-items li {
+  margin-bottom: 1.2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 3.5%;
+}
+
+.logo {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  font-size: 1.2rem;
+  color: #7b66ff;
+}
+.logo a {
+  text-decoration: none;
+}
+
+.nav-container input[type="checkbox"]:checked ~ .menu-items {
+  transform: translateX(0);
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+  transform: rotate(45deg);
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+  transform: scaleY(0);
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
+  transform: rotate(-45deg);
+}
+
+/* --------------------------------------NAV BAR------------------------------------------------------------------- */
+
+/* --------------------------------------Menu Highlight------------------------------------------------------------------- */
+
+.hjemStyle {
+  box-shadow: 0px 0px 55px 0px #7b66ff;
+  border-radius: 20%;
+  background-color: rgba(123, 102, 255, 0.4);
+}
+
+.hoverStyle:hover {
+  box-shadow: 0px 0px 55px 0px #7b66ff;
+  border-radius: 20%;
+  background-color: rgba(123, 102, 255, 0.4);
+}
+/* --------------------------------------Menu Highlight------------------------------------------------------------------- */
+
+/* --------------------------------------Instruks window------------------------------------------------------------------- */
+/* --------------------------------------mapdo------------------------------------------------------------------- */
+.moving-marker {
+  background-image: url("https://cdn0.iconfinder.com/data/icons/map-36/20/marker_person-512.png");
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+#map {
+  width: 100%;
+  height: 93.7vh;
+}
+
+@media only screen and (min-width: 2300px) {
+  #map {
+    width: 100%;
+    height: 100vh;
+  }
+}
+
+.toiletMenu {
+  z-index: 2;
+  position: absolute;
+  top: 93.3%;
+  left: 50%;
+  transform: translate(-93.3%, -50%);
+  width: 30%;
+  height: 5%;
+  margin-left: 15%;
+}
+
+.toiletBtn {
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 0px 20px 2px rgb(0, 153, 255);
+  border-radius: 10%;
+  background-color: rgba(0, 153, 255, 0.5);
+  border: none;
+  font-size: 150%;
+}
+@media only screen and (min-width: 2300px) {
+  .toiletBtn {
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-left: 50%;
+    margin-top: 7%;
+  }
+}
+
+/* --------------------------------------JS-effects------------------------------------------------------------------- */
+.hidden {
+  display: none;
+}
+.blur-effect {
+  filter: blur(5px);
+}
+
+.wrapper-hero-map-locations {
+  display: flex;
+}
+
+/* ---------------------- */
+/* Created by Tivotal */
+
+/* Google Fonts(Poppins) */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+
+.openBtn {
+  padding: 10px 60px;
+  background: #fff;
+  outline: none;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.popup {
+  position: absolute; /* This positions the popup at a specific location within the popup-container */
+  left: 52%;
+  margin-top: 80%;
+  /* --- */
+  background: #fff;
+  border-radius: 6px;
+  text-align: center;
+  color: #333;
+  visibility: hidden;
+  transition: 0.5s;
+  width: 30%;
+  height: 50%;
+
+  /* --- */
+  box-shadow: 0px 0px 20px 2px rgb(4, 110, 107);
+  border-radius: 10%;
+  background-color: rgba(56, 182, 155, 0.5);
+  /* ---- */
+  overflow-y: auto;
+  max-height: 90vh; /* adjust this value as needed */
+  /* --- */
+  overflow: hidden; /* Hide the native scrollbar */
+}
+
+.popup.active {
+  visibility: visible;
+  bottom: -15%;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.popup a {
+  text-decoration: none;
+  color: rgb(6, 37, 124);
+}
+
+.popup .content {
+  overflow-y: scroll; /* Enable scrolling on the content div */
+  height: 90%; /* Set the height to whatever length you want the scrollbar to be */
+  /* Add your custom scrollbar styles here */
+}
+
+.popup .content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.popup .content::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+.popup .content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/* ---------- */
+.popAdress {
+  margin-left: 10%;
+  font-size: 150%;
+}
+.distanceAdress {
+  margin-left: 5vh;
+  font-size: 150%;
+}
+.side-by-side {
+  flex-direction: column;
+  display: flex;
+}
+.content-block {
+  display: flex;
+}
