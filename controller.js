@@ -688,40 +688,39 @@ if (navigator.geolocation) {
 
 let recenterInterval; // Variable to store the recentering interval
 
-// Function to toggle continuous recentering on and off
-function toggleContinuousRecentering() {
-  console.log('Button clicked');
-  // Check if the interval is currently running
-  if (recenterInterval) {
-    console.log('Stopping continuous recentering');
-    // If running, clear the interval to stop continuous recentering
-    clearInterval(recenterInterval);
-    recenterInterval = null;
+// Function to recenter the map on the user's location
+function recenterMap() {
+  // Check if geolocation is available
+  if ('geolocation' in navigator) {
+    // Get the user's current location
+    navigator.geolocation.getCurrentPosition(position => {
+      const userLocation = [position.coords.longitude, position.coords.latitude];
+      console.log('New user location:', userLocation);
+      map.flyTo({
+        center: userLocation,
+        zoom: 16, // Adjust the zoom level as needed
+        essential: true // Allow the map to stay at the specified zoom level
+      });
+    }, error => {
+      console.error('Error getting user location:', error);
+    });
   } else {
-    console.log('Starting continuous recentering');
-    // If not running, start the interval for continuous recentering
-    recenterInterval = setInterval(() => {
-      console.log('Recentering...');
-      // Check if geolocation is available
-      if ('geolocation' in navigator) {
-        // Get the user's current location
-        navigator.geolocation.getCurrentPosition(position => {
-          const userLocation = [position.coords.longitude, position.coords.latitude];
-          console.log('New user location:', userLocation);
-          map.flyTo({
-            center: userLocation,
-            zoom: 19, // Adjust the zoom level as needed
-            essential: true // Allow the map to stay at the specified zoom level
-          });
-        }, error => {
-          console.error('Error getting user location:', error);
-        });
-      } else {
-        console.error('Geolocation is not supported.');
-      }
-    }, 300); // Update every 5 seconds (adjust as needed)
+    console.error('Geolocation is not supported.');
   }
 }
 
-// Add event listener to the toggle button
-document.getElementById('toggleButton').addEventListener('click', toggleContinuousRecentering);
+// Function to start continuous recentering
+function startContinuousRecentering() {
+  recenterMap(); // Initial recentering
+  // Start interval for continuous recentering
+  recenterInterval = setInterval(recenterMap, 300); // Recenter every 5 seconds (adjust as needed)
+}
+
+// Function to stop continuous recentering
+function stopContinuousRecentering() {
+  clearInterval(recenterInterval); // Clear the recentering interval
+}
+
+// Add event listeners to start and stop continuous recentering
+document.getElementById('startButton').addEventListener('click', startContinuousRecentering);
+document.getElementById('stopButton').addEventListener('click', stopContinuousRecentering);
