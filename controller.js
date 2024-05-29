@@ -640,9 +640,20 @@ function setRouteFromStartToEnd(start, end) {
 
 // Function to continuously update the route as the user follows it
 function updateRoute() {
-  if (currentRoute) {
-    // Remove the first coordinate from the route
-    currentRoute.shift();
+  if (currentRoute && userLocation) {
+    // Find the index of the coordinate closest to the user's current location
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+    for (let i = 0; i < currentRoute.length; i++) {
+      const distance = calculateDistance(userLocation, currentRoute[i]);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = i;
+      }
+    }
+
+    // Remove all coordinates before the closest index
+    currentRoute = currentRoute.slice(closestIndex);
 
     // Update the route source data
     map.getSource('route').setData({
@@ -654,6 +665,7 @@ function updateRoute() {
     });
   }
 }
+
 
 // Call the updateRoute function to start updating the route
 setInterval(updateRoute, 500); // Update the route every 0.5 seconds
