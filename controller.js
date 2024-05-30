@@ -728,7 +728,7 @@ function recenterMap() {
       console.log('New user location:', userLocation);
       map.flyTo({
         center: userLocation,
-        zoom: 18, // Adjust the zoom level as needed
+        zoom: 16, // Adjust the zoom level as needed
         essential: true // Allow the map to stay at the specified zoom level
       });
     }, error => {
