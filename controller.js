@@ -465,7 +465,7 @@ flyToUserLocation();
     setRouteFromStartToEnd(userLocation, chosenDestination); // Update this line
     map.flyTo({
       center: userLocation,
-      zoom: 20,
+      zoom: 16,
     });
   }
 
@@ -728,7 +728,7 @@ function recenterMap() {
       console.log('New user location:', userLocation);
       map.flyTo({
         center: userLocation,
-        zoom: 20, // Adjust the zoom level as needed
+        zoom: 16, // Adjust the zoom level as needed
         essential: true // Allow the map to stay at the specified zoom level
       });
     }, error => {
@@ -767,7 +767,7 @@ function flyToUserLocation() {
               // Fly to the user's current location
               map.flyTo({
                   center: [longitude, latitude],
-                  zoom: 20, // Adjust the zoom level as needed
+                  zoom: 16, // Adjust the zoom level as needed
                   essential: true // Ensures smoother animation
 
               });
