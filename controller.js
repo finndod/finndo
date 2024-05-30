@@ -185,17 +185,17 @@ function updateDistances(userLocation) {
   // Clear the content-block div before updating
   contentBlock.innerHTML = '';
 
-  // Loop through all adminPoints
-  adminPoints.forEach(point => {
-    // Calculate distance for the current point
+  // Calculate distances for all adminPoints
+  const adminPointsWithDistances = adminPoints.map(point => {
     const distance = calculateDistance(userLocation, point.coordinates);
-    let distanceText;
-    if (distance < 1000) {
-      distanceText = `${Math.round(distance)} meters`; // Display distance in meters if less than 1 kilometer
-    } else {
-      distanceText = `${(distance / 1000).toFixed(2)} km`; // Display distance in kilometers
-    }
+    return { ...point, distance };
+  });
 
+  // Sort adminPoints by distance
+  adminPointsWithDistances.sort((a, b) => a.distance - b.distance);
+
+  // Loop through sorted adminPoints and display them
+  adminPointsWithDistances.forEach(point => {
     // Create elements for the current point
     const adminLink = document.createElement('a');
     adminLink.href = '#';
@@ -204,6 +204,8 @@ function updateDistances(userLocation) {
 
     const distancePara = document.createElement('p');
     distancePara.className = 'distanceAdress';
+    // Display distance with appropriate unit
+    const distanceText = point.distance < 1000 ? `${Math.round(point.distance)} meters` : `${(point.distance / 1000).toFixed(2)} km`;
     distancePara.textContent = distanceText;
 
     // Append elements for the current point to the content-block div
