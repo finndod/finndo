@@ -465,7 +465,7 @@ flyToUserLocation();
     setRouteFromStartToEnd(userLocation, chosenDestination); // Update this line
     map.flyTo({
       center: userLocation,
-      zoom: 16,
+      zoom: 18,
     });
   }
 
