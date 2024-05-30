@@ -767,7 +767,9 @@ function flyToUserLocation() {
               // Fly to the user's current location
               map.flyTo({
                   center: [longitude, latitude],
+                  zoom: 16, // Adjust the zoom level as needed
                   essential: true // Ensures smoother animation
+
               });
           },
           error => {
