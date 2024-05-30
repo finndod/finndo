@@ -455,6 +455,7 @@ adminPoints.forEach((point) => {
 });
 
 
+flyToUserLocation();
 
 
   // If the user's location is known, set the route
@@ -593,6 +594,7 @@ function setRouteFromStartToEnd(start, end) {
           }
         });
       }
+      flyToUserLocation();
 
       // Update the current route
       currentRoute = route;
@@ -749,3 +751,31 @@ function toggleContinuousRecentering() {
 
 // Add event listener to toggle continuous recentering when button is clicked
 document.getElementById('toggleRecenterButton').addEventListener('click', toggleContinuousRecentering);
+
+// Function to fly to the user's location
+function flyToUserLocation() {
+  // Check if geolocation is supported by the browser
+  if ('geolocation' in navigator) {
+      // Get current position
+      navigator.geolocation.getCurrentPosition(
+          position => {
+              // Extract latitude and longitude from the position
+              const { latitude, longitude } = position.coords;
+
+              // Fly to the user's current location
+              map.flyTo({
+                  center: [longitude, latitude],
+                  essential: true // Ensures smoother animation
+              });
+          },
+          error => {
+              console.error('Error getting user location:', error);
+              // Handle error, e.g., by showing an alert to the user
+          }
+      );
+  } else {
+      // Geolocation is not supported
+      console.error('Geolocation is not supported by this browser.');
+      // Handle this case, e.g., by showing a message to the user
+  }
+}
