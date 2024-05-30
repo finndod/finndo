@@ -1,6 +1,6 @@
 {
-    "name": "Your App Name",
-    "short_name": "App",
+    "name": "finndo",
+    "short_name": "finndo",
     "start_url": "https://finndod.github.io/flushitt/#",
     "display": "standalone",
     "background_color": "#ffffff",
