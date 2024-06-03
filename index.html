@@ -28,9 +28,7 @@
     type="text/css"
   />
 
-
   <body>
-    <div id="app"></div>
     <nav>
       <div class="navbar">
         <div class="container nav-container">
@@ -63,18 +61,23 @@
     </nav>
     <main id="mainPart"></main>
     <footer>
-      <select id="languageSelect">
-        <option value="en">English</option>
-        <option value="no">Norwegian</option>
-    </select>
-    <button id="applyLanguage">Apply Language</button>
-    <button id="toggleRecenterButton">Toggle Recentering</button>
+      <div class="map-knapper">
+        <button class="map-knapper1" id="recenterBtn">Recenter</button>
+        <button class="map-knapper2" id="toggleFollowBtn">følg/ikkefølg</button>
+        <select class="map-knapper3" id="languageSelect">
+          <option value="en">English</option>
+          <option value="no">Norwegian</option>
+        </select>
+        <button class="map-knapper4" id="applyLanguage">Apply Language</button>
+
+        <input class="apple-switch" type="checkbox" id="toggleRecenterButton" />
+        Toggle recenter
+      </div>
       <div id="map" class="maps"></div>
-      <ul id="instructions"></ul>
+
+      <!-- css for directions -->
       <div id="directions"></div>
       <div id="estimate"></div>
-
-
       <div class="toiletMenu">
         <button class="toiletBtn">Finn Do!</button>
       </div>
@@ -85,7 +88,9 @@
               <a href="#" class="popAdress"></a>
               <p class="distanceAdress"></p>
             </div>
-
+          </div>
+        </div>
+      </div>
     </footer>
     <script></script>
     <script src="model.js"></script>
@@ -96,8 +101,5 @@
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
-    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
-
   </body>
 </html>
