@@ -20,8 +20,8 @@ mainItems.addEventListener(`click`, function () {
 const toiletBtn = document.querySelector(`.toiletBtn`);
 
 toiletBtn.addEventListener(`click`, function () {
-  console.log(`jeg trykker`);
-  popup.classList.toggle("active");
+  console.log(`jeg trykker toiletBtn`);
+  popup.classList.toggle("hidden");
 });
 
 //////////////////--pop up
@@ -30,8 +30,8 @@ toiletBtn.addEventListener(`click`, function () {
 let openBtn = document.querySelector(".openBtn");
 let popup = document.querySelector(".popup");
 let closeBtn = document.querySelector(".closeBtn");
-
+/* popup.classList.add(`hidden`); */
 closeBtn.addEventListener("click", () => {
-  popup.classList.toggle("active");
+  popup.classList.toggle("hidden");
   console.log(`its pressed`);
 });
